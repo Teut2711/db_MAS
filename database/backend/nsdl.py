@@ -9,8 +9,6 @@ from time import time
 
 PATH = pathlib.Path(__file__).parent
 
-
-
 class GetAllInfo:
     TOTAL_ROWS_INPUT_FILE = 0
     WERE_IN_TABLE_DEMATAD = 0
