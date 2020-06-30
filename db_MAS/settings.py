@@ -9,21 +9,24 @@ https://docs.djangoproject.com/en/3.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
-
 import os
-
+from configparser import RawConfigParser
+config = RawConfigParser()
+config.read('config.cfg')
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+BASE_DIR = os.path.dirname(os.path.dirname(
+    os.path.abspath(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '!1x6ga51(qq4d2-z837z4pgx(uc)7k66%xg7wegtoo!)ty-@3x'
+SECRET_KEY = config["DJANGO"]["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config["DJANGO"]["DEBUG"]
 
 ALLOWED_HOSTS = []
 
@@ -80,12 +83,12 @@ WSGI_APPLICATION = 'db_MAS.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mydatabase',
-        'USER': 'mydatabaseuser',
-        'PASSWORD': 'mypassword',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'ENGINE': config["DATABASE"]["ENGINE"],
+        'NAME': config["DATABASE"]["NAME"],
+        'USER': config["DATABASE"]["USER"],
+        'PASSWORD': config["DATABASE"]["PASSWORD"],
+        'HOST': config["DATABASE"]["HOST"],
+        'PORT': config["DATABASE"]["PORT"],
     }
 }
 

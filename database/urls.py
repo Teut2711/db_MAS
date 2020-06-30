@@ -1,7 +1,7 @@
 from django.urls import path
-from .views import NSDL
+from .views import NSDLView, SuccessView
 
 urlpatterns = [
-    path('NSDL/', NSDL.as_view()),
-    
+    path('nsdl/', NSDLView.as_view()),
+    path('success/', SuccessView.as_view()),
 ]
