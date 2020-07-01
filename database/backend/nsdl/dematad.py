@@ -1,4 +1,5 @@
 from . import interface
+from psqlextra.query import ConflictAction
 
 class Dematad(interface.Interface):
 
@@ -7,7 +8,7 @@ class Dematad(interface.Interface):
             chunk_as_dict = [dict(zip(self.all_cols, i))
                              for i in chunk]
             self.inserts += len(chunk)
-            self.model.objects_postgres.on_conflict(
+            self.model.objects.on_conflict(
                 ['DPID', 'CLID'],  ConflictAction.UPDATE
             ).bulk_insert(
                 chunk_as_dict

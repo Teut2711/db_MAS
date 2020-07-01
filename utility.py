@@ -10,11 +10,11 @@ import pathlib
 PATH = os.path.join(pathlib.Path(__file__).parent, 'cols')
 
 
-class GeneralModel(ABCMeta):
+class GeneralModel(metaclass=ABCMeta):
 
     @classmethod
     def clear_and_fill(cls, model, file_obj):
-        model.objects.flush()
+        model.objects.all().delete()
         instance_ = cls(model, file_obj)
         instance_.uploaded_file_rows = 0
         instance_.create_database()
@@ -131,7 +131,7 @@ class Dematad(GeneralModel):
             chunk_as_dict = [dict(zip(self.all_cols, i))
                              for i in chunk]
             self.inserts += len(chunk)
-            self.model.objects_postgres
+            self.model.objects
             .on_conflict(['DPID', 'CLID'], , ConflictAction.UPDATE)
             .bulk_insert(
                 chunk_as_dict

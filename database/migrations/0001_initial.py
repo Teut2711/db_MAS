@@ -80,7 +80,7 @@ class Migration(migrations.Migration):
                 ('UIDGAR', models.TextField()),
             ],
             managers=[
-                ('objects_postgres', psqlextra.manager.manager.PostgresManager()),
+                ('objects', psqlextra.manager.manager.PostgresManager()),
             ],
         ),
         migrations.AddConstraint(

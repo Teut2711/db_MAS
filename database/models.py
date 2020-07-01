@@ -5,7 +5,7 @@ from psqlextra.manager import PostgresManager
 
 class Dematad(models.Model):
     
-    objects_postgres = PostgresManager()
+    objects = PostgresManager()
     
     DPID = models.TextField()
     CLID = models.TextField()
